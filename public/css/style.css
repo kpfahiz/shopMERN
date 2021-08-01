@@ -1,0 +1,108 @@
+body{
+    color: black;
+}
+.navbar{
+    background-color: #001E6C;
+    padding: 15px;
+}
+.navbar i{
+    color: #FFAA4C;
+}
+.navbar .navbar-brand{
+    color: #FFAA4C;
+    font-weight:bolder;
+}
+.navbar .nav-link{
+    color: #FFAA4C;
+}
+.card  #buy{
+    background-color: #035397;
+    color: white;
+}
+.box{
+    background-color: #035397;
+    color: #FFAA4C;
+    /* border: 1px solid #5089C6; */
+    border-radius: 10px;
+}
+.box h1{
+    text-align: center;
+    padding: 15px;
+}
+#addBtn{
+    background-color: #FFAA4C;
+    width: 150px;
+    color: white;
+    font-weight: bold;
+}
+#foot{
+    background-color: #001E6C;
+    color: white;
+}
+.sidebar{
+    background-color: #001E6C;
+    max-width: 250px;
+    height: 100vh;
+    position:relative;
+    color: white;
+    position:fixed;
+}
+#bg{
+    background-color: whitesmoke;
+}
+.sidebar i{
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.sidebar h3{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.sidebar ul{
+    list-style: none;
+}
+.sidebar li{
+    padding-top: 25px;
+    font-size: large;
+}
+.sidebar a{
+    text-decoration: none;
+    color: white;
+}
+.sidebar .user{
+    margin-left: 30px;
+    position: absolute;
+    bottom: 15px;
+}
+.sidebar .drop-list{
+    background-color: #5089C6;
+}
+
+.sidebar .dropdown li{
+    padding-top: 5px;
+    font-size: large;
+}
+.float-end{
+    border: 1px #abd0f7 solid ;
+    background-color: #abd0f7;
+    text-align: center;
+    padding: 4px;
+    width: 40px;
+    border-radius: 5px;
+}
+#dash-icon{
+    color: #5089C6;
+    font-size: 25px;
+}
+#jumbotron{
+    background-color: #f2f1f7;
+}
+.dash-productBtn{
+    position:absolute;
+    right: 20px;
+    bottom: 10px;
+}
+.dash-productCard{
+    position: relative;
+}

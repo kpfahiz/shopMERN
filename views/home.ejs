@@ -1,0 +1,32 @@
+<%- include("layouts/header"); -%>
+<%- include('layouts/navbar') %>
+<div class="container">
+  <div class="row mt-5">
+    <% products.forEach((product)=>{ %>
+    <div class="col-md-4 mb-5">
+      <div class="card" style="width: 18rem" >
+        <img
+          src=<%= product.image   %> 
+          width="250px"
+          height="250px"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body" href=# >
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text">
+            <%= product.desc.substring(0,100) +"..." %>
+            <a href="/product/<%= product._id %>">more</a>
+          </p>
+          <p class="card-text">Price : $<span class="price"><%= product.price %></span></p>
+          <div class="d-grid gap-2">
+            <a href="#" class="btn" id="buy">Buy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include("layouts/footer"); -%>

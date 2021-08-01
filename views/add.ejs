@@ -1,0 +1,50 @@
+<%- include("layouts/header") -%>
+
+<div class="container mt-5">
+  <div class="box mb-5"> 
+    <h1 class="mb-5">Add Product</h1>
+  </div>
+  <form action="/add" method="post">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Iphone"
+        name="name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Price</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="$1000"
+        name="price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Image</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="URL"
+        name="image"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"
+        >Description</label
+      >
+      <textarea
+        class="form-control"
+        rows="3"
+        placeholder="Text me........."
+        name="desc"
+      ></textarea>
+    </div>
+    <button class="btn" id="addBtn" type="submit">ADD</button>
+  </form>
+</div>
+
+<%- include("layouts/footer") -%>
