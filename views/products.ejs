@@ -30,51 +30,100 @@
     </div>
   </div>
   <div class="col-sm-10">
-    <h3 class="mt-5 page-title">Products</h3>
-
-    <div class="card mb-3 mt-5 dash-productCard" style="max-width: 1080px;">
+    <div class="intro ">
+      <h3 class="mt-5 page-title">Products</h3>
+      <a class="addBtnLink " href="/add"><button type="submit" class="btn btn-success"> Add Products</button></a>
+    </div>
+    <% products.forEach((product)=>{ %>
+    <div class="card mb-3 mt-5 dash-productCard "  style="max-width: 1080px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
+            <img src="<%= product.image %>" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Price: $<span>1000</span></p>
+              <h5 class="card-title" id="product_name" value="<%= product.name %>" ><%= product.name %></h5>
+              <p class="card-text"><%= product.desc %></p>
+              <p class="card-text">Price: $<span><%= product.price %></span></p>
+              <p class="card-text">Stocks: <span><%= product.stock %></span></p>
               <div class="dash-productBtn">
-                  <button type="submit" class="btn btn-warning" ><i class="fas fa-pencil-alt "></i></button>
-                  <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm"><i class="fas fa-trash-alt "></i></button>
+                  <button type="button" class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#editform<%=product._id %>" aria-expanded="false" aria-controls="editform<%=product._id %>"><i class="fas fa-pencil-alt "></i></button>
+                  <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm<%=product._id %>" id="pdelete"><i class="fas fa-trash-alt "></i></button>
               </div>
             </div>
           </div>
         </div>
+    </div>
+    <div class="container collapse mb-4" id="editform<%=product._id %>">
+      <form action="/update" method="post">
+        <input type="hidden" name="id" value=<%=product._id %> >
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          value=<%= product.name %>
+          name="name"
+         
+        />
       </div>
-   </div>
-</div>
-
-
-
-
-
-
-<div class="modal" tabindex="-1" id="deleteConfirm">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirmation</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure ?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger">Confirm</button>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          value=<%= product.price %>
+          name="price"
+          
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          name="image"
+          value=<%= product.image %>
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          value=<%= product.stock %>
+          name="stocks"
+        />
+      </div>
+      <div class="mb-3">
+        <textarea
+          class="form-control"
+          rows="3"
+          name="desc"
+        ><%= product.desc %></textarea>
+      </div>
+      <button class="btn" id="addBtn" type="submit">ADD</button>
+    </form>
+    </div>
+    <div class="modal" tabindex="-1" id="deleteConfirm<%=product._id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="name">Are you want to delete <%=product.name %>  ?</p>
+          </div>
+          <form action="/delete" method="post">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-danger" name="id" value=<%=product._id %> >Confirm</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+    <% }) %>
   </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  

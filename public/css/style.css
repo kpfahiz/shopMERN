@@ -106,3 +106,11 @@ body{
 .dash-productCard{
     position: relative;
 }
+.intro{
+    position: relative;
+}
+.addBtnLink{
+ position:absolute;
+ right: 200px;
+ bottom:-30px;   
+}
