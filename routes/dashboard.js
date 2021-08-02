@@ -9,7 +9,7 @@ router.get('',dashboardController.Home);
 
 router.get('/products', dashboardController.Products);
 
-router.get('/order',dashboardController.Orders)
+// router.get('/order',dashboardController.Orders)
 
 router.get('/customers',dashboardController.Customers)
 router.get('/settings',dashboardController.Settings)

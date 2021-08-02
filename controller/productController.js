@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const Product = require('../models/Product')
+const Product = require('../models/Product').Product
 
 
 

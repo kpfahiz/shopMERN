@@ -8,7 +8,8 @@ require('dotenv').config()
 const homeRouters = require('./routes/home')
 const productRouters = require('./routes/product')
 const dashboardRouters = require('./routes/dashboard')
-const Product = require('./models/Product')
+const Product = require('./models/Product');
+const orderRouters = require('./routes/order')
 
 
 
@@ -31,6 +32,7 @@ app.use(express.static("public"))
 app.use('',homeRouters)
 app.use('',productRouters)
 app.use('/dashboard',dashboardRouters)
+app.use('/order',orderRouters)
 
 
 app.listen(3000, () => {

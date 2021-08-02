@@ -1,4 +1,4 @@
-const Product = require('../models/Product')
+const Product = require('../models/Product').Product
 
 
 const dashboardController = {
@@ -12,9 +12,9 @@ const dashboardController = {
             }
         });
     },
-    Orders(req,res){
-        res.render('orders')
-    },
+    // Orders(req,res){
+    //     res.render('orders')
+    // },
     Customers(req,res){
         res.render('customers')
     },
