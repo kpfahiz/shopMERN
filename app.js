@@ -10,6 +10,8 @@ const productRouters = require('./routes/product')
 const dashboardRouters = require('./routes/dashboard')
 const Product = require('./models/Product');
 const orderRouters = require('./routes/order')
+const loginRouters = require('./routes/login')
+const registerRouters = require('./routes/register')
 
 
 
@@ -33,6 +35,8 @@ app.use('',homeRouters)
 app.use('',productRouters)
 app.use('/dashboard',dashboardRouters)
 app.use('/order',orderRouters)
+app.use('/login',loginRouters)
+app.use('/register',registerRouters)
 
 
 app.listen(3000, () => {
