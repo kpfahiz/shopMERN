@@ -1,39 +1,53 @@
-<%- include("layouts/header"); -%>
+<%- include("layouts/header") -%>
     
 <div class="row" id="bg">
   <%- include("layouts/dashboardsidebar"); -%>
   <div class="col-sm-10">
     
-     <h3>Orders</h3>
-    
-        <table>
-            <% orders.forEach((order)=>{ %>
-              <tr>
-              <td><%= order._id %></td>
-              </tr>
-              <tr>
-              <td><%= order.createdAt.toLocaleDateString() %></td>
-              </tr>
-              <tr>
-              <td><%= order.quantity %></td>
-              </tr>
-              <tr>
-              <% order.products.forEach((product)=>{ %>
-                <td><%= product._id %></td>
-                </tr>
-                <tr>
-                <td><%= product.name %></td>
-                </tr>
-                <tr>
-                <td><%= product.price %></td>
-                </tr>
-              <% }) %>
+     <h3 class="mb-5">Orders</h3>
+     <% orders.forEach((order)=>{ %>
+     <div class="card mb-3" style="max-width: 1080px;">
+      <div class="row g-0">
+        <div class="col-md-12">
+          <div class="card-body">
+            <h5 class="card-title">Order Id: <%= order._id %></h5>
+            <p class="card-text">Ordered Date : <%= order.createdAt.toLocaleDateString() %> </p>
+            <%  total= 0 %>
+            <% order.items.forEach((item)=>{ %>
+            <% total= total +(item.quantity * item.product.price) %>
             <% }) %>
-        </table>
-     
+            <p class="card-text">Total Price : $<%= Number((total).toFixed(2)) %></p>
+            <h6>Products :</h6>
+              <div class="row">
+                <% order.items.forEach((item)=>{ %>
+                <div class="col-sm-6">
+                  <div class="card mb-3" style="max-width: 540px; height: 150px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img class="img-fluid rounded-start" style="height: 150px;" alt="..." src=<%= item.product.image %> >
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= item.product.name %></h5>
+                          <p class="card-text">Product Unit Price: $ <%= item.product.price %></p>
+                          <p class="card-text">Quantity:  <%= item.quantity %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
    </div>
 </div>
+<p class="card-text">Product Name: </p>
 
+<p class="card-text"></p>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     

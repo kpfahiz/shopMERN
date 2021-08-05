@@ -1,11 +1,12 @@
 const _ = require('lodash');
 
-const Product = require('../models/Product').Product
+const {Product} = require('../models/Product')
 
 
 
 const productController ={
     product(req, res) {
+        console.log(req.params.productId)
         Product.findById(req.params.productId, (err, foundProduct) => {
             if (!err) {
                 res.render("product", { product: foundProduct })
@@ -48,7 +49,6 @@ const productController ={
     },
     update(req, res) {
         const update = req.body;
-        console.log(update, req.body.id)
         Product.updateOne({ _id: req.body.id }, { $set: update }, (err) => {
             if (!err) {
                 res.redirect('/dashboard/products')
