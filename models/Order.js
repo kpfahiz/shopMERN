@@ -32,7 +32,7 @@ const Order = mongoose.model("Order", orderSchema)
 
 const orderitem = new OrderItem({
     product: {
-        "_id" : "61061b4d588124205422ff4b",
+        "_id" : "610e6102085bba33cc750598",
     },
     quantity: 3,
     createdAt: Date.now()
@@ -40,18 +40,20 @@ const orderitem = new OrderItem({
 
 const order = new Order({
     items: [{
-        "_id" : "61091696748c8334987e13b5",
+        "_id" : "610e64ab1e73563b245bec26",
     },
     {
-        "_id":"610916ddd5538545f06b7913"
+        "_id":"610e64c78498a2338c677763"
     },{
-        "_id":"6109327f307c042148e94f96"
+        "_id":"610e64e1d4dcea4a98aef4ff"
+    },{
+        "_id":"610e656686de944c508397e8"
     }
     ],
     createdAt: Date.now()
 })
 
-//orderitem.save();
-//order.save();
+// orderitem.save();
+ //order.save();
 module.exports = {Order, OrderItem};
 

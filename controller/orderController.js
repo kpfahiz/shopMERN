@@ -4,6 +4,13 @@ const { Order, OrderItem } = require('../models/Order')
 const orderController = {
     home(req, res) {
         if(req.isAuthenticated()){
+            Order.find().populate('Product').exec((err,order)=>{
+                console.log(order);
+                order.forEach((product)=>{
+                    console.log(product.items)
+                })
+                
+            })
             Order.find((err, foundOrders) => {
                 if (!err) {
                     res.render('orders', { orders: foundOrders,user:req.user })
