@@ -20,6 +20,10 @@ const productScema = {
    desc: {
         type:String,
         required:[ true, "Please enter Description" ]
+    },
+    seller:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
     }
 }
 

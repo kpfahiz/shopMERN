@@ -1,10 +1,11 @@
 const _ = require('lodash');
 
-const {Product} = require('../models/Product')
+const { Product } = require('../models/Product')
+const User = require('../models/User')
 
 
 
-const productController ={
+const productController = {
     product(req, res) {
         console.log(req.params.productId)
         Product.findById(req.params.productId, (err, foundProduct) => {
@@ -28,24 +29,36 @@ const productController ={
         });
     },
     add_get(req, res) {
-        res.render('add')
+        if (req.isAuthenticated()) {
+            res.render('add')
+        } else {
+            res.redirect('/register/seller')
+        }
+
     },
     add_post(req, res) {
-        const productName = _.capitalize(req.body.name)
-        const product = new Product({
-            name: productName,
-            price: req.body.price,
-            stock: req.body.stock,
-            image: req.body.image,
-            desc: req.body.desc
-        });
-        product.save((err) => {
-            if (!err) {
-                res.redirect('/dashboard/products')
-            } else {
-                res.send(err)
-            }
-        })
+        if (req.isAuthenticated()) {
+            console.log(req.user)
+            const productName = _.capitalize(req.body.name)
+            const product = new Product({
+                name: productName,
+                price: req.body.price,
+                stock: req.body.stock,
+                image: req.body.image,
+                desc: req.body.desc,
+                seller:req.user._id
+            });
+            product.save((err) => {
+                if (!err) {
+                    res.redirect('/dashboard/products')
+                } else {
+                    res.send(err)
+                }
+            })
+        } else {
+            res.redirect('/register/seller')
+        }
+        console.log(req)
     },
     update(req, res) {
         const update = req.body;
@@ -57,11 +70,11 @@ const productController ={
             }
         })
     },
-    delete(req,res){
-        Product.findByIdAndRemove(req.body.id,(err)=>{
-            if(!err){
+    delete(req, res) {
+        Product.findByIdAndRemove(req.body.id, (err) => {
+            if (!err) {
                 res.redirect('/dashboard/products')
-            }else{
+            } else {
                 res.send(err)
             }
         })

@@ -1,25 +1,40 @@
 const Product = require('../models/Product').Product
-
+const User = require('../models/User')
 
 const dashboardController = {
     Home(req,res){
-        res.render('dashboard')
+        if(req.isAuthenticated()){
+            res.render('dashboard',{user:req.user})
+        }else{
+            res.redirect('/login')
+        }
+        // res.render('dashboard',)
     },
     Products(req, res) {
-        Product.find({}, (err, foundProducts) => {
-            if (!err) {
-                res.render('products', { products: foundProducts })
-            }
-        });
+        if(req.isAuthenticated()){
+            Product.find({seller:req.user._id}, (err, foundProducts) => {
+                if (!err) {
+                    res.render('products', { products: foundProducts,user:req.user })
+                }
+            });
+        }else{
+            res.redirect('/register/seller')
+        }
+       
     },
-    // Orders(req,res){
-    //     res.render('orders')
-    // },
     Customers(req,res){
-        res.render('customers')
+        if(req.isAuthenticated()){
+            res.render('customers',{user:req.user})
+        }else{
+            res.redirect('/register/seller')
+        }
     },
     Settings(req,res){
-        res.render('settings')
+        if(req.isAuthenticated()){
+            res.render('settings',{user:req.user})
+        }else{
+            res.redirect('/register/seller')
+        }
     },
 }
 
